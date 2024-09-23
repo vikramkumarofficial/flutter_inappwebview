@@ -1033,10 +1033,10 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
             if !newSettings.enableViewportScale {
                 if configuration.userContentController.userScripts.contains(ENABLE_VIEWPORT_SCALE_JS_PLUGIN_SCRIPT) {
                     configuration.userContentController.removePluginScript(ENABLE_VIEWPORT_SCALE_JS_PLUGIN_SCRIPT)
-                    evaluateJavaScript(NOT_ENABLE_VIEWPORT_SCALE_JS_SOURCE)
+                    // evaluateJavaScript(NOT_ENABLE_VIEWPORT_SCALE_JS_SOURCE)
                 }
             } else {
-                evaluateJavaScript(ENABLE_VIEWPORT_SCALE_JS_SOURCE)
+                // evaluateJavaScript(ENABLE_VIEWPORT_SCALE_JS_SOURCE)
                 configuration.userContentController.addUserScript(ENABLE_VIEWPORT_SCALE_JS_PLUGIN_SCRIPT)
             }
         }
@@ -1045,10 +1045,10 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
             if newSettings.supportZoom {
                 if configuration.userContentController.userScripts.contains(NOT_SUPPORT_ZOOM_JS_PLUGIN_SCRIPT) {
                     configuration.userContentController.removePluginScript(NOT_SUPPORT_ZOOM_JS_PLUGIN_SCRIPT)
-                    evaluateJavaScript(SUPPORT_ZOOM_JS_SOURCE)
+                    // evaluateJavaScript(SUPPORT_ZOOM_JS_SOURCE)
                 }
             } else {
-                evaluateJavaScript(NOT_SUPPORT_ZOOM_JS_SOURCE)
+                // evaluateJavaScript(NOT_SUPPORT_ZOOM_JS_SOURCE)
                 configuration.userContentController.addUserScript(NOT_SUPPORT_ZOOM_JS_PLUGIN_SCRIPT)
             }
         }
@@ -1322,10 +1322,10 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
                 let enableSource = "\(flagVariable) = \(enable);"
                 if #available(iOS 14.0, *), pluginScript.requiredInAllContentWorlds {
                     for contentWorld in self.configuration.userContentController.contentWorlds {
-                        self.evaluateJavaScript(enableSource, frame: nil, contentWorld: contentWorld, completionHandler: nil)
+                        // self.evaluateJavaScript(enableSource, frame: nil, contentWorld: contentWorld, completionHandler: nil)
                     }
                 } else {
-                    self.evaluateJavaScript(enableSource, completionHandler: nil)
+                    // self.evaluateJavaScript(enableSource, completionHandler: nil)
                 }
                 if !enable {
                     self.configuration.userContentController.removePluginScripts(with: pluginScript.groupName!)
@@ -1334,11 +1334,11 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
             else if enable {
                 if #available(iOS 14.0, *), pluginScript.requiredInAllContentWorlds {
                     for contentWorld in self.configuration.userContentController.contentWorlds {
-                        self.evaluateJavaScript(pluginScript.source, frame: nil, contentWorld: contentWorld, completionHandler: nil)
+                        // self.evaluateJavaScript(pluginScript.source, frame: nil, contentWorld: contentWorld, completionHandler: nil)
                         self.configuration.userContentController.addPluginScript(pluginScript)
                     }
                 } else {
-                    self.evaluateJavaScript(pluginScript.source, completionHandler: nil)
+                    // self.evaluateJavaScript(pluginScript.source, completionHandler: nil)
                     self.configuration.userContentController.addPluginScript(pluginScript)
                 }
                 self.configuration.userContentController.sync(scriptMessageHandler: self)
@@ -1910,7 +1910,7 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
         initializeWindowIdJS()
         
         InAppWebView.credentialsProposed = []
-        evaluateJavaScript(PLATFORM_READY_JS_SOURCE, completionHandler: nil)
+        // evaluateJavaScript(PLATFORM_READY_JS_SOURCE, completionHandler: nil)
         
         // sometimes scrollView.contentSize doesn't fit all the frame.size available
         // so, we call setNeedsLayout to redraw the layout
@@ -2962,7 +2962,7 @@ if(window.\(JAVASCRIPT_BRIDGE_NAME)[\(_callHandlerID)] != null) {
         if !isPausedTimers {
             isPausedTimers = true
             let script = "alert();";
-            self.evaluateJavaScript(script, completionHandler: nil)
+            // self.evaluateJavaScript(script, completionHandler: nil)
         }
     }
     
